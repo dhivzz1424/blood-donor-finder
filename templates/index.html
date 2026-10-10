@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +29,10 @@
             <a href="#contact">Contact</a>
         </div>
 
-        <button class="login-btn">
+        <!-- Login Button -->
+        <a href="{{ url_for('login') }}" class="login-btn">
             Login
-        </button>
+        </a>
 
     </nav>
 
@@ -56,13 +58,13 @@
 
             <div class="hero-buttons">
 
-                <a href="/register" class="primary-btn">
+                <a href="{{ url_for('register_page') }}" class="primary-btn">
                     I'm a Donor
                 </a>
 
-                <button class="secondary-btn">
+                <a href="{{ url_for('login') }}" class="secondary-btn">
                     I'm a Hospital
-                </button>
+                </a>
 
             </div>
 

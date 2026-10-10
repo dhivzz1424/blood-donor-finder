@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard | BloodConnect</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <section class="success-section">
+        <div class="success-card">
+            <h1>Welcome, {{ donor.name }}!</h1>
+            <p>You are successfully logged in to BloodConnect.</p>
+
+            <hr>
+
+            <h2>Your Donor Details</h2>
+            <p><strong>Email:</strong> {{ donor.email }}</p>
+            <p><strong>Phone:</strong> {{ donor.phone }}</p>
+            <p><strong>Blood Group:</strong> {{ donor.bloodGroup }}</p>
+            <p><strong>Location:</strong> {{ donor.location }}</p>
+
+            <p>
+                <strong>Availability:</strong>
+                {% if donor.availability %}
+                    Available
+                {% else %}
+                    Not available
+                {% endif %}
+            </p>
+
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </section>
+</body>
+</html>

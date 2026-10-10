@@ -1,130 +1,132 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Donor Registration | BloodConnect</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 
 <body>
 
+    <!-- Navigation -->
     <nav class="navbar">
-
-        <div class="logo">
-            🩸 BloodConnect
-        </div>
+        <a href="/" class="logo">🩸 BloodConnect</a>
 
         <div class="nav-links">
             <a href="/">Home</a>
-            <a href="/#about">About</a>
-            <a href="/#features">Features</a>
+            <a href="/login">Login</a>
         </div>
-
     </nav>
 
+    <!-- Registration Section -->
+    <section class="success-section register-section">
 
-    <section class="registration">
+        <div class="success-card register-card">
 
-        <div class="registration-box">
+            <div class="register-icon">🩸</div>
 
-            <h1>Become a Blood Donor</h1>
+            <h1>Become a Donor</h1>
 
-            <p>
-                Register yourself and help save lives during emergencies.
+            <p class="register-description">
+                Join BloodConnect and help save lives.
+                Register your details below.
             </p>
 
+            <form action="{{ url_for('register_page') }}" method="POST">
 
-            <form action="/register" method="POST">
+                <div class="register-form-grid">
 
-                <label>Full Name</label>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required>
+                    </div>
 
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your full name"
-                    required
-                >
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            required>
+                    </div>
 
-                <label>Email</label>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            minlength="8"
+                            required>
+                    </div>
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    required
-                >
+                    <div class="form-group">
+                        <label for="bloodGroup">Blood Group</label>
+                        <select id="bloodGroup" name="bloodGroup" required>
+                            <option value="">Select blood group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="Enter your city or area"
+                            required>
+                    </div>
 
-                <label>Phone Number</label>
+                </div>
 
-                <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Enter your phone number"
-                    required
-                >
-
-
-                <label>Password</label>
-
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Create a password"
-                    required
-                >
-
-
-                <label>Blood Group</label>
-
-                <select name="bloodGroup" required>
-
-                    <option value="">Select Blood Group</option>
-
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-
-                </select>
-
-
-                <label>Location</label>
-
-                <input
-                    type="text"
-                    name="location"
-                    placeholder="Enter your city"
-                    required
-                >
-
-
-                <button type="submit" class="primary-btn">
-                    Register as Donor
+                <button type="submit" class="register-submit">
+                    Create Donor Account
                 </button>
 
             </form>
+
+            <p class="register-login">
+                Already registered?
+                <a href="{{ url_for('login') }}">Login here</a>
+            </p>
 
         </div>
 
     </section>
 
-</body>
+    <footer>
+        <p>© 2026 BloodConnect | Connecting Donors, Saving Lives</p>
+    </footer>
 
+</body>
 </html>

@@ -1,3 +1,8 @@
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,26 +10,35 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #252525;
+    background: #fff5f6;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #c9252a;
 }
 
 
-/* Navigation */
+/* =========================
+   NAVIGATION BAR
+========================= */
 
 .navbar {
-    height: 70px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 8%;
-    border-bottom: 1px solid #eee;
+    align-items: center;
+    padding: 18px 8%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: bold;
+    color: #222222;
 }
 
 .nav-links {
@@ -33,218 +47,429 @@ body {
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: #333;
+    color: #333333;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    color: #c9252a;
 }
 
 .login-btn {
-    padding: 10px 22px;
+    display: inline-block;
+    background: #c9252a;
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 7px;
     border: none;
-    border-radius: 6px;
-    background: #c62828;
-    color: white;
     cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #a91d22;
+    color: #ffffff;
 }
 
 
-/* Hero */
+/* =========================
+   HOME PAGE HERO
+========================= */
 
 .hero {
-    min-height: 600px;
+    min-height: 620px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 60px 10%;
-    background: #fff5f5;
+    align-items: center;
+    padding: 70px 10%;
+    background: #fff5f6;
+    gap: 40px;
 }
 
 .hero-content {
-    max-width: 600px;
+    max-width: 650px;
 }
 
 .tagline {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 20px;
 }
 
 .hero h1 {
-    font-size: 64px;
-    line-height: 1.05;
+    font-size: 68px;
+    line-height: 1.1;
     margin-bottom: 25px;
 }
 
 .hero-text {
-    font-size: 19px;
-    line-height: 1.6;
+    font-size: 20px;
     margin-bottom: 30px;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 15px;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
 .primary-btn,
 .secondary-btn {
+    display: inline-block;
     padding: 14px 25px;
-    border-radius: 7px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .primary-btn {
-    border: none;
-    background: #c62828;
-    color: white;
+    background: #c9252a;
+    color: #ffffff;
+    border: 1px solid #c9252a;
+}
+
+.primary-btn:hover {
+    background: #a91d22;
 }
 
 .secondary-btn {
-    background: white;
-    border: 1px solid #c62828;
-    color: #c62828;
+    background: #ffffff;
+    color: #c9252a;
+    border: 1px solid #c9252a;
+}
+
+.secondary-btn:hover {
+    background: #fff0f1;
 }
 
 .hero-image {
-    font-size: 180px;
+    font-size: 150px;
 }
 
 
-/* Features */
+/* =========================
+   FEATURES SECTION
+========================= */
 
 .features {
-    padding: 80px 10%;
+    padding: 70px 8%;
     text-align: center;
+    background: #ffffff;
 }
 
 .features h2,
 .about h2 {
-    font-size: 38px;
+    font-size: 34px;
     margin-bottom: 15px;
 }
 
 .section-text {
-    color: #666;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
+    color: #666666;
 }
 
 .feature-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    gap: 22px;
+    margin-top: 35px;
 }
 
 .feature-card {
-    padding: 30px 20px;
-    border: 1px solid #eee;
+    padding: 28px 20px;
+    background: #fff7f7;
     border-radius: 12px;
-    background: white;
-}
-
-.icon {
-    font-size: 40px;
-    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 .feature-card h3 {
-    margin-bottom: 12px;
+    margin: 12px 0;
 }
 
-.feature-card p {
-    color: #666;
-    line-height: 1.5;
+.icon {
+    font-size: 38px;
 }
-
-
-/* About */
 
 .about {
-    padding: 80px 15%;
-    background: #f8f8f8;
+    padding: 70px 10%;
+    background: #fff5f6;
 }
 
 .about p {
-    max-width: 700px;
-    line-height: 1.7;
     margin-top: 15px;
+    max-width: 800px;
 }
-
-
-/* Footer */
 
 footer {
     text-align: center;
-    padding: 40px;
-    background: #222;
-    color: white;
+    padding: 30px;
+    background: #ffffff;
 }
 
-footer p {
-    margin-top: 10px;
-    color: #ccc;
-}
 
-/* Registration Page */
+/* =========================
+   LOGIN AND SUCCESS PAGES
+========================= */
 
-.registration {
-    min-height: 90vh;
+.success-section {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
-    background: #fff5f5;
+    padding: 35px 20px;
+    background: linear-gradient(135deg, #fff5f6, #ffe3e7);
 }
 
-.registration-box {
-    width: 500px;
-    padding: 40px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+.success-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 35px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(150, 20, 35, 0.12);
+    text-align: center;
 }
 
-.registration-box h1 {
-    font-size: 32px;
+.success-card h1 {
+    font-size: 30px;
+    color: #c9252a;
     margin-bottom: 10px;
 }
 
-.registration-box > p {
-    color: #666;
-    margin-bottom: 30px;
+.success-card > p {
+    color: #666666;
+    margin-bottom: 20px;
 }
 
-.registration-box form {
-    display: flex;
-    flex-direction: column;
+.success-card form {
+    text-align: left;
+    margin-top: 25px;
 }
 
-.registration-box label {
-    margin-bottom: 7px;
+.success-card label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.success-card input {
+    display: block;
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.success-card input:focus {
+    border-color: #c9252a;
+    box-shadow: 0 0 0 3px rgba(201, 37, 42, 0.10);
+}
+
+.success-card button[type="submit"] {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #c9252a;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.success-card button[type="submit"]:hover {
+    background: #a91d22;
+}
+
+.success-card a {
+    color: #c9252a;
     font-weight: bold;
 }
 
-.registration-box input,
-.registration-box select {
-    padding: 13px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 7px;
-    font-size: 15px;
+.success-card a:hover {
+    text-decoration: underline;
 }
 
-.registration-box input:focus,
-.registration-box select:focus {
-    outline: none;
-    border-color: #c62828;
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+    .hero {
+        padding: 60px 7%;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .feature-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
 }
 
-.registration-box button {
-    margin-top: 10px;
+@media (max-width: 600px) {
+    .navbar {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        order: 3;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: auto;
+        padding: 60px 7%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-text {
+        font-size: 17px;
+    }
+
+    .hero-image {
+        font-size: 90px;
+        align-self: center;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+    .success-card {
+        padding: 30px 22px;
+    }
+
+    .success-card h1 {
+        font-size: 26px;
+    }
 }
 
-.primary-btn {
-    display: inline-block;
-    text-decoration: none;
+/* =========================
+   DONOR REGISTRATION PAGE
+========================= */
+
+.register-section {
+    min-height: auto;
+    padding: 55px 20px;
+}
+
+.register-card {
+    max-width: 720px;
+    padding: 38px 42px;
+    text-align: left;
+}
+
+.register-card .register-icon {
     text-align: center;
+    font-size: 42px;
+    margin-bottom: 8px;
 }
+
+.register-card h1 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.register-card .register-description {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.register-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 22px;
+}
+
+.register-form-grid .form-group {
+    min-width: 0;
+}
+
+.register-card .form-group label {
+    margin-top: 12px;
+}
+
+.register-card .form-group input,
+.register-card .form-group select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #333333;
+    font-size: 15px;
+    outline: none;
+}
+
+.register-card .form-group input:focus,
+.register-card .form-group select:focus {
+    border-color: #c9252a;
+    box-shadow: 0 0 0 3px rgba(201, 37, 42, 0.10);
+}
+
+.register-card .register-submit {
+    width: 100%;
+    margin-top: 28px;
+    padding: 14px;
+    background: #c9252a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-card .register-submit:hover {
+    background: #a91d22;
+}
+
+.register-card .register-login {
+    text-align: center;
+    margin-top: 22px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .register-card {
+        padding: 28px 20px;
+    }
+
+    .register-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
