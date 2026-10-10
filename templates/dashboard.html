@@ -4,35 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Donor Dashboard | BloodConnect</title>
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <section class="success-section">
-        <div class="success-card">
+
+    <nav class="navbar">
+        <a href="/" class="logo">🩸 BloodConnect</a>
+
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="login-btn">Logout</button>
+        </form>
+    </nav>
+
+    <main class="dashboard-section">
+
+        <div class="dashboard-heading">
+            <p class="dashboard-tagline">DONOR DASHBOARD</p>
             <h1>Welcome, {{ donor.name }}!</h1>
-            <p>You are successfully logged in to BloodConnect.</p>
+            <p>Thank you for being part of BloodConnect.</p>
+        </div>
+
+        <div class="dashboard-card">
+
+            <h2>Your Profile</h2>
+
+            <div class="dashboard-details">
+                <div class="detail-item">
+                    <span>Full Name</span>
+                    <strong>{{ donor.name }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Email Address</span>
+                    <strong>{{ donor.email }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Phone Number</span>
+                    <strong>{{ donor.phone }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Blood Group</span>
+                    <strong class="blood-group">
+                        {{ donor.bloodGroup }}
+                    </strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Location</span>
+                    <strong>{{ donor.location }}</strong>
+                </div>
+            </div>
 
             <hr>
 
-            <h2>Your Donor Details</h2>
-            <p><strong>Email:</strong> {{ donor.email }}</p>
-            <p><strong>Phone:</strong> {{ donor.phone }}</p>
-            <p><strong>Blood Group:</strong> {{ donor.bloodGroup }}</p>
-            <p><strong>Location:</strong> {{ donor.location }}</p>
+            <h2>Donation Availability</h2>
 
             <p>
-                <strong>Availability:</strong>
-                {% if donor.availability %}
-                    Available
-                {% else %}
-                    Not available
-                {% endif %}
+                Update your status to let the platform know
+                whether you are currently available to be contacted.
             </p>
 
-            <a href="{{ url_for('logout') }}">Logout</a>
+            <div class="availability-status">
+                {% if donor.get('availability', True) %}
+                    <span class="status-available">● Available</span>
+                {% else %}
+                    <span class="status-unavailable">● Unavailable</span>
+                {% endif %}
+            </div>
+
+            <form action="{{ url_for('update_availability') }}"
+                  method="POST"
+                  class="availability-form">
+
+                <label for="availability">Change your status</label>
+
+                <select name="availability" id="availability" required>
+                    <option value="available"
+                        {% if donor.get('availability', True) %}
+                            selected
+                        {% endif %}>
+                        Available
+                    </option>
+
+                    <option value="unavailable"
+                        {% if not donor.get('availability', True) %}
+                            selected
+                        {% endif %}>
+                        Unavailable
+                    </option>
+                </select>
+
+                <button type="submit" class="dashboard-btn">
+                    Update Availability
+                </button>
+            </form>
+
         </div>
-    </section>
+
+        <p class="dashboard-note">
+            Your availability status can be changed whenever necessary.
+        </p>
+
+    </main>
+
+    <footer>
+        <p>© 2026 BloodConnect | Connecting Donors, Saving Lives</p>
+    </footer>
+
 </body>
 </html>

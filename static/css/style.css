@@ -473,3 +473,159 @@ footer {
     }
 }
 
+
+/* =========================
+   DONOR DASHBOARD
+========================= */
+
+.dashboard-section {
+    min-height: 75vh;
+    padding: 55px 20px;
+    background: #fff5f6;
+}
+
+.dashboard-heading {
+    max-width: 850px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.dashboard-tagline {
+    color: #c9252a;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.dashboard-heading h1 {
+    margin: 10px 0;
+    font-size: 36px;
+    color: #252525;
+}
+
+.dashboard-heading > p:last-child {
+    color: #666;
+}
+
+.dashboard-card {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(150, 20, 35, 0.09);
+}
+
+.dashboard-card h2 {
+    margin-bottom: 18px;
+    color: #c9252a;
+    font-size: 22px;
+}
+
+.dashboard-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.detail-item {
+    padding: 15px;
+    background: #fff7f7;
+    border-radius: 9px;
+    overflow-wrap: anywhere;
+}
+
+.detail-item span {
+    display: block;
+    margin-bottom: 5px;
+    color: #777;
+    font-size: 13px;
+}
+
+.detail-item strong {
+    color: #292929;
+}
+
+.detail-item .blood-group {
+    color: #c9252a;
+    font-size: 22px;
+}
+
+.dashboard-card hr {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.dashboard-card > p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.availability-status {
+    margin: 18px 0;
+    font-weight: bold;
+}
+
+.status-available {
+    color: #18864b;
+}
+
+.status-unavailable {
+    color: #c9252a;
+}
+
+.availability-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.availability-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 15px;
+}
+
+.dashboard-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 13px;
+    background: #c9252a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-btn:hover {
+    background: #a91d22;
+}
+
+.dashboard-note {
+    margin: 20px auto;
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .dashboard-heading h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-card {
+        padding: 22px 18px;
+    }
+
+    .dashboard-details {
+        grid-template-columns: 1fr;
+    }
+}
+

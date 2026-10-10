@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard | BloodConnect</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">🩸 BloodConnect</a>
+
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="login-btn">Logout</button>
+        </form>
+    </nav>
+
+    <main class="dashboard-section">
+        <div class="dashboard-heading">
+            <p class="dashboard-tagline">HOSPITAL PORTAL</p>
+            <h1>Welcome, {{ hospital.name }}!</h1>
+            <p>Your BloodConnect hospital account is active.</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Hospital Details</h2>
+
+            <div class="dashboard-details">
+                <div class="detail-item">
+                    <span>Hospital Name</span>
+                    <strong>{{ hospital.name }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Email</span>
+                    <strong>{{ hospital.email }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Contact Number</span>
+                    <strong>{{ hospital.phone }}</strong>
+                </div>
+
+                <div class="detail-item">
+                    <span>Location</span>
+                    <strong>{{ hospital.location }}</strong>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>Donor Search</h2>
+            <p>
+                Your next feature will let you search registered donors
+                by blood group and location.
+            </p>
+            <p>Donor search is not enabled yet.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 BloodConnect | Connecting Donors, Saving Lives</p>
+    </footer>
+</body>
+</html>

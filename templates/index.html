@@ -4,7 +4,6 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>BloodConnect | Emergency Blood Finder</title>
@@ -29,7 +28,6 @@
             <a href="#contact">Contact</a>
         </div>
 
-        <!-- Login Button -->
         <a href="{{ url_for('login') }}" class="login-btn">
             Login
         </a>
@@ -42,9 +40,7 @@
 
         <div class="hero-content">
 
-            <p class="tagline">
-                EVERY SECOND COUNTS
-            </p>
+            <p class="tagline">EVERY SECOND COUNTS</p>
 
             <h1>
                 Find Blood.<br>
@@ -58,11 +54,14 @@
 
             <div class="hero-buttons">
 
-                <a href="{{ url_for('register_page') }}" class="primary-btn">
+                <a href="{{ url_for('register_page') }}"
+                   class="primary-btn">
                     I'm a Donor
                 </a>
 
-                <a href="{{ url_for('login') }}" class="secondary-btn">
+                <!-- Hospital Login Link -->
+                <a href="{{ url_for('hospital_login') }}"
+                   class="secondary-btn">
                     I'm a Hospital
                 </a>
 
@@ -91,37 +90,25 @@
             <div class="feature-card">
                 <div class="icon">🩸</div>
                 <h3>Register</h3>
-                <p>
-                    Donors and hospitals can create
-                    their accounts easily.
-                </p>
+                <p>Donors and hospitals can create their accounts easily.</p>
             </div>
 
             <div class="feature-card">
                 <div class="icon">🔎</div>
                 <h3>Find a Donor</h3>
-                <p>
-                    Search donors based on blood group
-                    and location.
-                </p>
+                <p>Search donors based on blood group and location.</p>
             </div>
 
             <div class="feature-card">
                 <div class="icon">🚨</div>
                 <h3>Emergency Request</h3>
-                <p>
-                    Hospitals can send emergency
-                    requests to nearby donors.
-                </p>
+                <p>Hospitals can send emergency requests to nearby donors.</p>
             </div>
 
             <div class="feature-card">
                 <div class="icon">❤️</div>
                 <h3>Save a Life</h3>
-                <p>
-                    Connect quickly and help someone
-                    in need.
-                </p>
+                <p>Connect quickly and help someone in need.</p>
             </div>
 
         </div>
@@ -133,7 +120,6 @@
     <section id="about" class="about">
 
         <div>
-
             <h2>Why BloodConnect?</h2>
 
             <p>
@@ -146,7 +132,6 @@
                 that connects hospitals with eligible donors
                 based on blood group and location.
             </p>
-
         </div>
 
     </section>
@@ -157,16 +142,10 @@
 
         <h3>🩸 BloodConnect</h3>
 
-        <p>
-            Smart Emergency Blood & Donor Finder
-        </p>
-
-        <p>
-            © 2026 BloodConnect
-        </p>
+        <p>Smart Emergency Blood &amp; Donor Finder</p>
+        <p>© 2026 BloodConnect</p>
 
     </footer>
 
 </body>
-
 </html>
