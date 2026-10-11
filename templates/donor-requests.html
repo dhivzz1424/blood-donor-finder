@@ -1,0 +1,125 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Blood Requests | BloodConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff5f5;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: #c62828;
+            font-size: 23px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .request-card {
+            background: white;
+            padding: 24px;
+            margin: 18px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+        }
+
+        h1, h2 {
+            color: #c62828;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #fff0c2;
+            font-weight: bold;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #c62828;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
+        .empty {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="{{ url_for('dashboard') }}">🩸 BloodConnect</a>
+        <form action="{{ url_for('logout') }}" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </header>
+
+    <main>
+        <h1>🏥 Hospital Blood Requests</h1>
+        <p>View current blood requirements submitted by hospitals.</p>
+
+        {% if requests_list %}
+            {% for item in requests_list %}
+                <section class="request-card">
+                    <h2>{{ item.blood_group }} Blood Required</h2>
+
+                    <p><strong>Units:</strong> {{ item.units }}</p>
+                    <p><strong>Location:</strong> {{ item.location }}</p>
+                    <p><strong>Urgency:</strong> {{ item.urgency }}</p>
+                    <p><strong>Contact:</strong> {{ item.contact }}</p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status">{{ item.status }}</span>
+                    </p>
+
+                    {% if item.notes %}
+                        <p><strong>Additional Notes:</strong>
+                            {{ item.notes }}</p>
+                    {% endif %}
+                </section>
+            {% endfor %}
+        {% else %}
+            <section class="empty">
+                <h2>No Blood Requests Yet</h2>
+                <p>There are no hospital requests to display right now.</p>
+            </section>
+        {% endif %}
+
+        <a href="{{ url_for('dashboard') }}" class="back-button">
+            ← Back to Donor Dashboard
+        </a>
+    </main>
+</body>
+</html>
+```

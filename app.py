@@ -4,6 +4,7 @@ from flask import (
     session, redirect, url_for
 )
 import certifi
+from bson import ObjectId
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from dotenv import load_dotenv
@@ -203,6 +204,21 @@ def update_availability():
     return redirect(url_for("dashboard"))
 
 
+@app.route("/donor/requests")
+@donor_required
+def donor_blood_requests():
+    requests_list = list(
+        blood_requests.find(
+            {},
+            {"_id": 0}
+        ).sort("_id", -1)
+    )
+
+    return render_template(
+        "donor-requests.html",
+        requests_list=requests_list
+    )
+
 # -----------------------------------
 # HOSPITAL REGISTRATION
 # -----------------------------------
@@ -377,7 +393,19 @@ def hospital_donors():
 @app.route("/hospital/emergency-request", methods=["GET"])
 @hospital_required
 def emergency_request():
-    return render_template("emergency-request.html")
+    hospital = hospitals.find_one(
+        {"email": session["hospital_email"]},
+        {"password": 0}
+    )
+
+    if not hospital:
+        session.clear()
+        return redirect(url_for("hospital_login"))
+
+    return render_template(
+        "emergency-request.html",
+        hospital=hospital
+    )
 
 
 @app.route("/hospital/create-request", methods=["POST"])
@@ -434,6 +462,48 @@ def create_blood_request():
         "emergency-request.html",
         success="Blood request submitted successfully!"
     )
+
+@app.route("/hospital/my-requests/<request_id>/status", methods=["POST"])
+@hospital_required
+def update_blood_request_status(request_id):
+    if not ObjectId.is_valid(request_id):
+        return "Invalid request ID", 400
+
+    result = blood_requests.update_one(
+        {
+            "_id": ObjectId(request_id),
+            "hospital_email": session["hospital_email"]
+        },
+        {
+            "$set": {"status": "Fulfilled"}
+        }
+    )
+
+    if result.matched_count == 0:
+        return "Request not found", 404
+
+    return redirect(url_for("my_blood_requests"))
+
+
+    
+# -----------------------------------
+# MY BLOOD REQUESTS
+# -----------------------------------
+
+@app.route("/hospital/my-requests")
+@hospital_required
+def my_blood_requests():
+    requests_list = list(
+        blood_requests.find({
+            "hospital_email": session["hospital_email"]
+        }).sort("_id", -1)
+    )
+
+    return render_template(
+        "my-blood-requests.html",
+        requests_list=requests_list
+    )
+
 
 
 # -----------------------------------

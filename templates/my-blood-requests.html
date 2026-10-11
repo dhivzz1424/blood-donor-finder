@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Blood Requests | BloodConnect</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .requests-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .requests-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .requests-heading h1 {
+            color: #c62828;
+        }
+
+        .request-card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .request-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .request-details span {
+            display: block;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            border-radius: 7px;
+            background: #c62828;
+            color: white;
+            text-decoration: none;
+        }
+
+        .empty-message {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .notes {
+            margin-top: 15px;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">🩸 BloodConnect</a>
+        <a href="{{ url_for('hospital_dashboard') }}"
+           class="login-btn">Dashboard</a>
+    </nav>
+
+    <main class="requests-container">
+
+        <a href="{{ url_for('hospital_dashboard') }}"
+           class="back-btn">← Back to Dashboard</a>
+
+        <header class="requests-heading">
+            <h1>My Blood Requests</h1>
+            <p>View the emergency blood requests submitted by your hospital.</p>
+        </header>
+
+        {% if requests_list %}
+
+            {% for item in requests_list %}
+                <section class="request-card">
+
+                    <h2>🩸 {{ item.blood_group }} Blood</h2>
+
+                                        
+                    <p>
+                        <strong>Request Status:</strong>
+                        {{ item.status }}
+                    </p>
+
+                    {% if item.status != "Fulfilled" %}
+                    <form method="POST"
+                        action="{{ url_for('update_blood_request_status',
+                                            request_id=item._id) }}">
+
+                        <input type="hidden" name="status" value="Fulfilled">
+
+                        <button type="submit" class="button">
+                            ✓ Request Satisfied
+                        </button>
+                    </form>
+                    {% else %}
+                    <p>✓ This request has been satisfied.</p>
+                    {% endif %}
+
+
+                    <div class="request-details">
+
+                        <div>
+                            <span>Units Required</span>
+                            <strong>{{ item.units }}</strong>
+                        </div>
+
+                        <div>
+                            <span>Required Location</span>
+                            <strong>{{ item.location }}</strong>
+                        </div>
+
+                        <div>
+                            <span>Urgency</span>
+                            <strong>{{ item.urgency }}</strong>
+                        </div>
+
+                        <div>
+                            <span>Contact Phone</span>
+                            <strong>{{ item.contact }}</strong>
+                        </div>
+
+                    </div>
+
+                    {% if item.notes %}
+                        <p class="notes">
+                            <strong>Additional Details:</strong>
+                            {{ item.notes }}
+                        </p>
+                    {% endif %}
+
+                </section>
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-message">
+                <h2>No blood requests yet</h2>
+                <p>Your submitted emergency requests will appear here.</p>
+
+                <a href="{{ url_for('emergency_request') }}"
+                   class="back-btn">
+                    Create Blood Request
+                </a>
+            </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+</html>

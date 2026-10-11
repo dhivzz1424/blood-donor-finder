@@ -64,6 +64,50 @@
             color: white;
             cursor: pointer;
         }
+        .hospital-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.action-card {
+    background: white;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.action-card h3 {
+    color: #c62828;
+    margin-top: 0;
+}
+
+.action-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.action-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 18px;
+    background: #c62828;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.action-btn:hover {
+    background: #a61f1f;
+}
+
+@media (max-width: 768px) {
+    .hospital-actions {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 
@@ -86,6 +130,12 @@
         </section>
 
         <section class="dashboard-grid">
+            <div class="dashboard-card">
+                <h2>🏥 Hospital Profile</h2>
+                <p><strong>Name:</strong> {{ hospital.name }}</p>
+                <p><strong>Phone:</strong> {{ hospital.phone }}</p>
+                <p><strong>Location:</strong> {{ hospital.location }}</p>
+            </div>
 
             <div class="dashboard-card">
                 <h2>🔍 Find Blood Donors</h2>
@@ -100,20 +150,36 @@
                 </a>
             </div>
 
-            <div class="dashboard-card">
-                <h2>🩸 Emergency Requests</h2>
+            <article class="action-card">
+                <h3>🩸 Emergency Requests</h3>
                 <p>
-                    Emergency blood request management will be added
-                    in the next project step.
+                    Create an emergency blood request by specifying
+                    the blood group, units required, location and urgency.
                 </p>
-            </div>
+            
+                
+                <a href="{{ url_for('emergency_request') }}"
+                class="action-btn">
+                Create Blood Request
+                </a>
 
-            <div class="dashboard-card">
-                <h2>🏥 Hospital Profile</h2>
-                <p><strong>Name:</strong> {{ hospital.name }}</p>
-                <p><strong>Phone:</strong> {{ hospital.phone }}</p>
-                <p><strong>Location:</strong> {{ hospital.location }}</p>
-            </div>
+            </article>
+
+            
+            
+            <article class="action-card">
+                <h3>📋 My Blood Requests</h3>
+                <p>
+                    View the blood requests submitted by your hospital
+                    and check their current status.
+                </p>
+
+                <a href="{{ url_for('my_blood_requests') }}"
+                class="action-btn">
+                    View My Requests
+                </a>
+            </article>
+
 
         </section>
 

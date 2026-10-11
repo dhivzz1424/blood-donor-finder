@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +70,47 @@
             background: #f7f7f7;
             border-radius: 8px;
         }
+        
+        /* Search results table alignment */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+            background: white;
+        }
+
+        thead th {
+            background: #fff0f0;
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+            padding: 15px 18px;
+            border-bottom: 2px solid #ddd;
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 15px 18px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+        tbody tr:hover {
+            background: #fffafa;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
@@ -122,26 +163,33 @@
 
             {% if donors %}
             <div class="donor-table-wrapper">
-                <table class="donor-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Blood Group</th>
-                            <th>Location</th>
-                            <th>Availability</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for donor in donors %}
-                        <tr>
-                            <td>{{ donor.name }}</td>
-                            <td>{{ donor.bloodGroup }}</td>
-                            <td>{{ donor.location }}</td>
-                            <td class="available">Available</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Blood Group</th>
+                        <th>Location</th>
+                        <th>Contact Number</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for donor in donors %}
+                    <tr>
+                        <td>{{ donor.name }}</td>
+                        <td>{{ donor.bloodGroup }}</td>
+                        <td>{{ donor.location }}</td>
+                        <td>{{ donor.phone }}</td>
+                        <td style="color: green; font-weight: bold;">
+                            Available
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
             </div>
             {% else %}
             <p class="empty-message">
@@ -159,4 +207,3 @@
     </main>
 </body>
 </html>
-```
