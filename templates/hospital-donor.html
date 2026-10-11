@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Blood Donors | BloodConnect</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .search-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 25px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .search-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .search-form input,
+        .search-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .search-form button {
+            align-self: end;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .donor-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .donor-table th,
+        .donor-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .empty-message {
+            padding: 20px;
+            background: #f7f7f7;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">🩸 BloodConnect</a>
+        <a href="{{ url_for('hospital_dashboard') }}" class="login-btn">
+            Hospital Dashboard
+        </a>
+    </nav>
+
+    <main class="search-container">
+        <h1>Find Blood Donors</h1>
+        <p>Search registered donors by blood group and location.</p>
+
+        <form method="POST"
+              action="{{ url_for('hospital_donors') }}"
+              class="search-form">
+
+            <div>
+                <label for="blood_group">Blood Group</label>
+                <select name="blood_group" id="blood_group">
+                    <option value="">All blood groups</option>
+                    {% for group in blood_groups %}
+                    <option value="{{ group }}"
+                        {% if selected_blood_group == group %}
+                            selected
+                        {% endif %}>
+                        {{ group }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="location">Location</label>
+                <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    placeholder="Enter city or area"
+                    value="{{ selected_location }}">
+            </div>
+
+            <button type="submit">Search Donors</button>
+        </form>
+
+        {% if searched %}
+            <h2>Search Results</h2>
+
+            {% if donors %}
+            <div class="donor-table-wrapper">
+                <table class="donor-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Blood Group</th>
+                            <th>Location</th>
+                            <th>Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donor in donors %}
+                        <tr>
+                            <td>{{ donor.name }}</td>
+                            <td>{{ donor.bloodGroup }}</td>
+                            <td>{{ donor.location }}</td>
+                            <td class="available">Available</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-message">
+                No available donors matched your search.
+                Try another blood group or location.
+            </p>
+            {% endif %}
+        {% endif %}
+
+        <p>
+            <a href="{{ url_for('hospital_dashboard') }}">
+                Back to Hospital Dashboard
+            </a>
+        </p>
+    </main>
+</body>
+</html>
+```

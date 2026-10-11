@@ -4,64 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Hospital Dashboard | BloodConnect</title>
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .hospital-dashboard {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 25px;
+        }
+
+        .welcome-card {
+            background: #fff5f5;
+            padding: 30px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .dashboard-card {
+            padding: 25px;
+            border: 1px solid #eee;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .dashboard-card h2 {
+            margin-top: 0;
+        }
+
+        .action-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 18px;
+            background: #c62828;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .action-link:hover {
+            background: #a61f1f;
+        }
+
+        .logout-button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
     <nav class="navbar">
         <a href="/" class="logo">🩸 BloodConnect</a>
 
         <form action="{{ url_for('logout') }}" method="POST">
-            <button type="submit" class="login-btn">Logout</button>
+            <button type="submit" class="logout-button">Logout</button>
         </form>
     </nav>
 
-    <main class="dashboard-section">
-        <div class="dashboard-heading">
-            <p class="dashboard-tagline">HOSPITAL PORTAL</p>
-            <h1>Welcome, {{ hospital.name }}!</h1>
-            <p>Your BloodConnect hospital account is active.</p>
-        </div>
+    <main class="hospital-dashboard">
 
-        <div class="dashboard-card">
-            <h2>Hospital Details</h2>
+        <section class="welcome-card">
+            <h1>Welcome, {{ hospital.name }}! 🏥</h1>
+            <p>Manage your hospital's blood donor search and emergency needs.</p>
+            <p><strong>Email:</strong> {{ hospital.email }}</p>
+            <p><strong>Location:</strong> {{ hospital.location }}</p>
+        </section>
 
-            <div class="dashboard-details">
-                <div class="detail-item">
-                    <span>Hospital Name</span>
-                    <strong>{{ hospital.name }}</strong>
-                </div>
+        <section class="dashboard-grid">
 
-                <div class="detail-item">
-                    <span>Email</span>
-                    <strong>{{ hospital.email }}</strong>
-                </div>
+            <div class="dashboard-card">
+                <h2>🔍 Find Blood Donors</h2>
+                <p>
+                    Search registered, available donors by blood group
+                    and location.
+                </p>
 
-                <div class="detail-item">
-                    <span>Contact Number</span>
-                    <strong>{{ hospital.phone }}</strong>
-                </div>
-
-                <div class="detail-item">
-                    <span>Location</span>
-                    <strong>{{ hospital.location }}</strong>
-                </div>
+                <a href="{{ url_for('hospital_donors') }}"
+                   class="action-link">
+                    Search Donors
+                </a>
             </div>
 
-            <hr>
+            <div class="dashboard-card">
+                <h2>🩸 Emergency Requests</h2>
+                <p>
+                    Emergency blood request management will be added
+                    in the next project step.
+                </p>
+            </div>
 
-            <h2>Donor Search</h2>
-            <p>
-                Your next feature will let you search registered donors
-                by blood group and location.
-            </p>
-            <p>Donor search is not enabled yet.</p>
-        </div>
+            <div class="dashboard-card">
+                <h2>🏥 Hospital Profile</h2>
+                <p><strong>Name:</strong> {{ hospital.name }}</p>
+                <p><strong>Phone:</strong> {{ hospital.phone }}</p>
+                <p><strong>Location:</strong> {{ hospital.location }}</p>
+            </div>
+
+        </section>
+
     </main>
-
-    <footer>
-        <p>© 2026 BloodConnect | Connecting Donors, Saving Lives</p>
-    </footer>
 </body>
 </html>
